@@ -1,0 +1,226 @@
+:root {
+  --night: #1a0b3b;
+  --violet: #4a1a6e;
+  --magenta: #c2308f;
+  --pink: #ff3d9a;
+  --coral: #ff6f8f;
+  --orange: #ffb36b;
+  --text: #ffffff;
+  --text-soft: rgba(255, 255, 255, 0.72);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html,
+body {
+  height: 100%;
+  background: var(--night);
+  overflow: hidden;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Helvetica Neue", Arial, sans-serif;
+  color: var(--text);
+  -webkit-user-select: none;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---------- Escena de fondo ---------- */
+.scene {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    180deg,
+    var(--night) 0%,
+    var(--violet) 28%,
+    var(--magenta) 55%,
+    var(--coral) 75%,
+    var(--orange) 100%
+  );
+  overflow: hidden;
+}
+
+.sun {
+  position: absolute;
+  left: 50%;
+  bottom: 14%;
+  width: 78vmin;
+  height: 78vmin;
+  max-width: 520px;
+  max-height: 520px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffe29a 0%, var(--orange) 45%, #ff4f9a 100%);
+  opacity: 0.85;
+  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 18px);
+  mask-image: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 18px);
+}
+
+.sea {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 16%;
+  background: linear-gradient(180deg, #5b1f7a 0%, #2a0f4d 100%);
+}
+
+.sea::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--orange), transparent);
+  opacity: 0.8;
+}
+
+.palm {
+  position: absolute;
+  bottom: 8%;
+  height: 62%;
+  fill: var(--night);
+  opacity: 0.92;
+}
+
+.palm.left {
+  left: -6%;
+}
+
+.palm.right {
+  right: -6%;
+  transform: scaleX(-1);
+}
+
+/* ---------- Contenido ---------- */
+.content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding:
+    max(env(safe-area-inset-top), 24px)
+    20px
+    max(env(safe-area-inset-bottom), 28px);
+  text-align: center;
+}
+
+.kicker {
+  font-size: 12px;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.8);
+  margin-bottom: 10px;
+  font-weight: 600;
+}
+
+.title {
+  font-size: clamp(64px, 22vw, 120px);
+  line-height: 0.9;
+  font-weight: 900;
+  letter-spacing: -0.02em;
+  background: linear-gradient(180deg, #fff 0%, #ffd6ec 50%, #ff8fc4 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  filter: drop-shadow(0 6px 24px rgba(255, 61, 154, 0.55));
+}
+
+.sub {
+  margin-top: 10px;
+  font-size: 14px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  font-weight: 600;
+}
+
+/* ---------- Contador ---------- */
+.grid {
+  margin-top: 34px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  width: 100%;
+  max-width: 420px;
+}
+
+.cell {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: rgba(26, 11, 59, 0.42);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 18px;
+  padding: 16px 4px 12px;
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+}
+
+.num {
+  font-size: clamp(30px, 10vw, 46px);
+  font-weight: 800;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.lbl {
+  margin-top: 8px;
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 600;
+}
+
+.date {
+  margin-top: 26px;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.tz {
+  margin-top: 6px;
+  font-size: 12px;
+  color: var(--text-soft);
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Estado: ya salió ---------- */
+.release {
+  display: none;
+  margin-top: 30px;
+  font-size: clamp(28px, 9vw, 44px);
+  font-weight: 900;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  text-shadow: 0 0 24px rgba(255, 61, 154, 0.9);
+}
+
+.is-released .grid {
+  display: none;
+}
+
+.is-released .release {
+  display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation: none !important;
+    transition: none !important;
+  }
+}
