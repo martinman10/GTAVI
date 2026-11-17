@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>GTA VI · Cuenta regresiva</title>
+  <meta name="description" content="Cuenta regresiva para el lanzamiento de GTA VI en Uruguay.">
+
+  <!-- PWA / iPhone -->
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="192x192" href="icons/icon-192.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="GTA VI">
+  <meta name="theme-color" content="#1a0b3b">
+  <meta name="format-detection" content="telephone=no">
+
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <div class="scene" aria-hidden="true">
+    <div class="sun"></div>
+
+    <svg class="palm left" viewBox="0 0 200 400" preserveAspectRatio="xMinYMax meet">
+      <use href="#palm-shape"/>
+    </svg>
+    <svg class="palm right" viewBox="0 0 200 400" preserveAspectRatio="xMinYMax meet">
+      <use href="#palm-shape"/>
+    </svg>
+
+    <div class="sea"></div>
+  </div>
+
+  <!-- Definición única de la palmera (dibujo propio) -->
+  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
+    <defs>
+      <g id="palm-shape">
+        <path d="M92 400 C96 300 100 220 120 120 L130 122 C112 222 108 300 108 400 Z"/>
+        <path d="M122 118 C80 70 30 80 0 120 C40 95 80 95 122 118 Z"/>
+        <path d="M122 118 C95 55 50 30 10 40 C55 55 90 80 122 118 Z"/>
+        <path d="M124 116 C130 50 160 10 200 0 C165 35 145 70 124 116 Z"/>
+        <path d="M126 118 C170 80 200 90 200 130 C175 105 150 105 126 118 Z"/>
+        <path d="M124 116 C110 60 90 20 70 0 C105 30 120 70 124 116 Z"/>
+      </g>
+    </defs>
+  </svg>
+
+  <main class="content" id="app">
+    <p class="kicker">Cuenta regresiva</p>
+    <h1 class="title">GTA VI</h1>
+    <p class="sub">Uruguay</p>
+
+    <section class="grid" id="countdown" aria-label="Tiempo restante" role="timer" aria-live="off">
+      <div class="cell">
+        <span class="num" id="days">--</span>
+        <span class="lbl">Días</span>
+      </div>
+      <div class="cell">
+        <span class="num" id="hours">--</span>
+        <span class="lbl">Horas</span>
+      </div>
+      <div class="cell">
+        <span class="num" id="minutes">--</span>
+        <span class="lbl">Min</span>
+      </div>
+      <div class="cell">
+        <span class="num" id="seconds">--</span>
+        <span class="lbl">Seg</span>
+      </div>
+    </section>
+
+    <p class="release" id="release">¡Ya salió!</p>
+
+    <p class="date" id="dateLabel">Jueves 19 de noviembre de 2026</p>
+    <p class="tz" id="tzLabel">00:00 · hora de Uruguay</p>
+  </main>
+
+  <script src="js/app.js"></script>
+</body>
+</html>
