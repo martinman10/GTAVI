@@ -3,10 +3,9 @@
   --violet: #4a1a6e;
   --magenta: #c2308f;
   --pink: #ff3d9a;
-  --coral: #ff6f8f;
   --orange: #ffb36b;
   --text: #ffffff;
-  --text-soft: rgba(255, 255, 255, 0.72);
+  --text-soft: rgba(255, 255, 255, 0.76);
 }
 
 *,
@@ -33,72 +32,40 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-/* ---------- Escena de fondo ---------- */
+/* ---------- Fondo con la imagen ---------- */
 .scene {
   position: fixed;
   inset: 0;
-  background: linear-gradient(
-    180deg,
-    var(--night) 0%,
-    var(--violet) 28%,
-    var(--magenta) 55%,
-    var(--coral) 75%,
-    var(--orange) 100%
-  );
+  background: var(--night);
   overflow: hidden;
 }
 
-.sun {
-  position: absolute;
-  left: 50%;
-  bottom: 14%;
-  width: 78vmin;
-  height: 78vmin;
-  max-width: 520px;
-  max-height: 520px;
-  transform: translateX(-50%);
-  border-radius: 50%;
-  background: linear-gradient(180deg, #ffe29a 0%, var(--orange) 45%, #ff4f9a 100%);
-  opacity: 0.85;
-  -webkit-mask-image: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 18px);
-  mask-image: repeating-linear-gradient(180deg, #000 0 14px, transparent 14px 18px);
-}
-
-.sea {
-  position: absolute;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  height: 16%;
-  background: linear-gradient(180deg, #5b1f7a 0%, #2a0f4d 100%);
-}
-
-.sea::before {
+/* Brillo magenta abajo, para que el contador se lea sobre la imagen */
+.scene::after {
   content: "";
   position: absolute;
+  inset: 0;
+  background: radial-gradient(120% 55% at 50% 100%, rgba(194, 48, 143, 0.42), transparent 70%);
+}
+
+.hero {
+  position: absolute;
+  top: 0;
   left: 0;
   right: 0;
-  top: 0;
-  height: 2px;
-  background: linear-gradient(90deg, transparent, var(--orange), transparent);
-  opacity: 0.8;
-}
-
-.palm {
-  position: absolute;
-  bottom: 8%;
   height: 62%;
-  fill: var(--night);
-  opacity: 0.92;
+  /* El 62% mueve el encuadre hacia la pareja. Si querés otro recorte, cambiá ese número. */
+  background: url("../img/fondo.jpg") 62% 20% / cover no-repeat;
+  -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 100%);
+  mask-image: linear-gradient(180deg, #000 0%, #000 52%, transparent 100%);
 }
 
-.palm.left {
-  left: -6%;
-}
-
-.palm.right {
-  right: -6%;
-  transform: scaleX(-1);
+/* Sombra arriba para que se lea la hora y la batería del iPhone */
+.hero::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(26, 11, 59, 0.6) 0%, transparent 24%);
 }
 
 /* ---------- Contenido ---------- */
@@ -109,47 +76,40 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   padding:
     max(env(safe-area-inset-top), 24px)
     20px
-    max(env(safe-area-inset-bottom), 28px);
+    calc(max(env(safe-area-inset-bottom), 20px) + 28px);
   text-align: center;
 }
 
+.logo-wrap {
+  line-height: 0;
+}
+
+.logo {
+  display: block;
+  width: auto;
+  height: auto;
+  max-width: min(58vw, 250px);
+  max-height: 30vh;
+  filter: drop-shadow(0 8px 26px rgba(0, 0, 0, 0.5));
+}
+
 .kicker {
+  margin-top: 16px;
   font-size: 12px;
-  letter-spacing: 0.42em;
+  letter-spacing: 0.36em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.8);
-  margin-bottom: 10px;
+  color: var(--text-soft);
   font-weight: 600;
-}
-
-.title {
-  font-size: clamp(64px, 22vw, 120px);
-  line-height: 0.9;
-  font-weight: 900;
-  letter-spacing: -0.02em;
-  background: linear-gradient(180deg, #fff 0%, #ffd6ec 50%, #ff8fc4 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-  filter: drop-shadow(0 6px 24px rgba(255, 61, 154, 0.55));
-}
-
-.sub {
-  margin-top: 10px;
-  font-size: 14px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.85);
-  font-weight: 600;
+  padding-left: 0.36em; /* compensa el espaciado de la última letra */
 }
 
 /* ---------- Contador ---------- */
 .grid {
-  margin-top: 34px;
+  margin-top: 22px;
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   gap: 10px;
@@ -161,13 +121,13 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  background: rgba(26, 11, 59, 0.42);
+  background: rgba(26, 11, 59, 0.5);
   border: 1px solid rgba(255, 255, 255, 0.22);
   border-radius: 18px;
   padding: 16px 4px 12px;
-  -webkit-backdrop-filter: blur(10px);
-  backdrop-filter: blur(10px);
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.25);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
 }
 
 .num {
@@ -184,10 +144,11 @@ body {
   text-transform: uppercase;
   color: var(--text-soft);
   font-weight: 600;
+  padding-left: 0.2em;
 }
 
 .date {
-  margin-top: 26px;
+  margin-top: 22px;
   font-size: 15px;
   font-weight: 600;
 }
@@ -202,7 +163,7 @@ body {
 /* ---------- Estado: ya salió ---------- */
 .release {
   display: none;
-  margin-top: 30px;
+  margin-top: 22px;
   font-size: clamp(28px, 9vw, 44px);
   font-weight: 900;
   letter-spacing: 0.04em;
@@ -216,6 +177,16 @@ body {
 
 .is-released .release {
   display: block;
+}
+
+/* ---------- Pantallas anchas (iPad / compu) ---------- */
+@media (min-aspect-ratio: 1/1) {
+  .hero {
+    height: 100%;
+    background-position: 50% 25%;
+    -webkit-mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 100%);
+    mask-image: linear-gradient(180deg, #000 0%, #000 40%, transparent 100%);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
