@@ -17,40 +17,19 @@
   <meta name="theme-color" content="#1a0b3b">
   <meta name="format-detection" content="telephone=no">
 
+  <link rel="preload" as="image" href="img/fondo.jpg">
   <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
   <div class="scene" aria-hidden="true">
-    <div class="sun"></div>
-
-    <svg class="palm left" viewBox="0 0 200 400" preserveAspectRatio="xMinYMax meet">
-      <use href="#palm-shape"/>
-    </svg>
-    <svg class="palm right" viewBox="0 0 200 400" preserveAspectRatio="xMinYMax meet">
-      <use href="#palm-shape"/>
-    </svg>
-
-    <div class="sea"></div>
+    <div class="hero"></div>
   </div>
 
-  <!-- Definición única de la palmera (dibujo propio) -->
-  <svg width="0" height="0" style="position:absolute" aria-hidden="true">
-    <defs>
-      <g id="palm-shape">
-        <path d="M92 400 C96 300 100 220 120 120 L130 122 C112 222 108 300 108 400 Z"/>
-        <path d="M122 118 C80 70 30 80 0 120 C40 95 80 95 122 118 Z"/>
-        <path d="M122 118 C95 55 50 30 10 40 C55 55 90 80 122 118 Z"/>
-        <path d="M124 116 C130 50 160 10 200 0 C165 35 145 70 124 116 Z"/>
-        <path d="M126 118 C170 80 200 90 200 130 C175 105 150 105 126 118 Z"/>
-        <path d="M124 116 C110 60 90 20 70 0 C105 30 120 70 124 116 Z"/>
-      </g>
-    </defs>
-  </svg>
-
   <main class="content" id="app">
-    <p class="kicker">Cuenta regresiva</p>
-    <h1 class="title">GTA VI</h1>
-    <p class="sub">Uruguay</p>
+    <h1 class="logo-wrap">
+      <img class="logo" src="img/logo.png" width="450" height="340" alt="Grand Theft Auto VI">
+    </h1>
+    <p class="kicker">Cuenta regresiva · Uruguay</p>
 
     <section class="grid" id="countdown" aria-label="Tiempo restante" role="timer" aria-live="off">
       <div class="cell">

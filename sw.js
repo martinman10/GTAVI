@@ -1,6 +1,6 @@
 // Service worker: deja la app funcionando sin conexión.
 // Si cambiás cualquier archivo, subí el número de CACHE_VERSION para que el iPhone se actualice.
-const CACHE_VERSION = "v1";
+const CACHE_VERSION = "v2";
 const CACHE_NAME = `gta6-contador-${CACHE_VERSION}`;
 
 const ASSETS = [
@@ -9,6 +9,8 @@ const ASSETS = [
   "css/styles.css",
   "js/app.js",
   "manifest.webmanifest",
+  "img/fondo.jpg",
+  "img/logo.png",
   "icons/apple-touch-icon.png",
   "icons/icon-192.png",
   "icons/icon-512.png",
